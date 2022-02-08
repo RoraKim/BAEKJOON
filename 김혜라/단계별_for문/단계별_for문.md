@@ -424,3 +424,24 @@ X보다 작은 수를 입력받은 순서대로 공백으로 구분해 출력한
 1 4 2 3
 ```
 
+
+
+여기서 의문이 들었던건 왜 굳이 N을 주는 거지..?였다 n의 갯수만큼 주어진다는 사실과 답이 전혀 연관이 없어보였기 때문이다. 그래도 혹시 모르니까 if문으로 n이 수열 a의 길이와 같을 때라는 조건을 넣어 줬다. 
+
+``` python
+import sys
+
+n, x = map(int, sys.stdin.readline().rstrip().split())
+a = list(map(int, sys.stdin.readline().rstrip().split()))
+
+result = []
+if len(a) == n:
+    for i in a:
+        if i < x:
+            result.append(i)
+
+print(*result)
+```
+
+
+
