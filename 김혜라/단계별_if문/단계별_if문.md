@@ -251,3 +251,56 @@ print(new_hour, new_minute)
 ```
 
 한번에 맞았다! 이번에는 map함수를 쓰는 법이 헷갈리지도 않았다. 그런데 new hour를 새로 지정하는 방법이 다른것이 있을 것 같기 때문에 스터디원들과 상의를 해보려한다. 
+
+---
+
+
+
+## 2525. 오븐 시계 
+
+시계가 120분을 넘어갈 수 있다는 것에 초점을 둬야한다. 
+
+```python
+h, m = map(int, input().split())
+time = int(input())
+
+if m + time >= 60:
+    h += (m + time) // 60
+    m = m + time - ((m + time) // 60) * 60
+
+elif m + time < 60:
+    h = h
+    m = m + time
+
+if h > 23:
+    h = h - 24
+
+print(h, m)
+```
+
+---
+
+
+
+## 2480. 주사위 세개
+
+아하....왜이렇게 여러번 틀렸는지 알았다. 나는 elif를 사용하지 않고 if를 사용했기 때문이다. 그래서 뒤에 조건에도 해당사항이 있을경우 뒤 까지 다 출력되었다. 
+
+```python
+a, b, c = map(int, input().split())
+if a == b == c:
+    print(10000 + (a * 1000))
+
+if a == b != c or a == c != b:
+    print(1000 + (a * 100))
+
+
+if b == c != a:
+    print(1000 + (b * 100))
+
+if a != b and b != c and a != c:
+    maxx = max(a, b, c)
+
+    print(maxx * 100)
+```
+
