@@ -1,103 +1,65 @@
-def safe(letter):
-    n = len(letter)
-    main_list = []
-    for i in range(1, 1 << n):
-        sub_list = []
-        #j는 arr_a의 인덱스이므로 0부터 조회해야
-        #모든 요소 포함 여부 확인 가능
-        for j in range(n):
-            if i & (1 << j):
-                #print(arr[j], end=' ')
-                sub_list.append(ord(letter[j]) - 64)
-        main_list.append(sub_list)
-    # #
-    # print(main_list)
+import sys; sys.stdin = open('safecracker')
 
-    # #길이 조건에 맞는 부분집합을 담은 함수 len_list
-    len_list = []
-    for i in main_list:
-        if len(i) == 5:
-            len_list.append(i)
+def DFS(L):
+    # result = [0] * r
+    global final_result
+    # global result
 
-    # len_list = sorted(len_list)
-    return(len_list)
+    #종료조건
+    # 뽑으라고 한 갯수만큼 뽑으면 종료
+    #dfs 레벨이 뽑는 갯수와 같으면 종료
+    if L == r:
+        if result[0] - (result[1]**2) + (result[2]**3) - (result[3]**4) + (result[4]**5) == target:
+            # print(result)
+            # return result
 
+            final_result.append(result[::1])
+            # print(final_result)
+            # return
 
-
-num, letter = map(str, input().split())
-num = int(num)
-# print(letter)
-# print(ord('Z'))
-
-
-alpha = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z']
-
+    else:
+        for i in range(len(n)):
+            #0이라는 것은 해당 값을 가져다 쓰지 않았다는 뜻임
+            if checklist[i] == 0:
+                result[L] = n[i]
+                #체크를 하고
+                checklist[i] = 1
+                #재귀를 하고 트래버스를 하고
+                #재귀의 전에는 전처리를 적어주고
+                DFS(L + 1)
+                #백트래버스를 할 때는 지워줘라
+                #재귀 후처리를 적어줌
+                checklist[i] = 0
 
 
-print(safe(letter))
-print(len(safe(letter)))
+alpha = list(input().split())
+target, *alpha = alpha
+target = int(target)
+# print(target, type(target))
+# print(alpha)
 
-# my_lst = []
-# for i in safe(letter):
-#     for j in i:
-#         my_lst.append[j]
-#
+main_lst = []
+for i in alpha:
+    for j in i:
+        # print(ord(j))
+        ord_alpha = ord(j) - 64
+        # print(ord_alpha)
+        main_lst.append(ord_alpha)
+
+# print(main_lst)
+n = main_lst
+r = 5
+
+global final_result
+final_result = []
+# global result
+result = [0] * r
+
+checklist = [0] * len(n)
+
+DFS(0)
+
+sorted(final_result)
+print(final_result[-1])
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-#     sub_set = [[]]
-#     for j in i:
-#         len_ = len(sub_set)
-#         for k in range(len_):
-#             sub_set.append(sub_set[k] + [j])
-#     # print(sub_set)
-#
-#     len_list = []
-#     for i in sub_set:
-#         if len(i) == 5:
-#             len_list.append(i)
-#
-#     print(len_list)
-
-    # main_list = []
-    # for j in range(1, 1 << 5):
-    #     sub_list = []
-    #     #j는 arr_a의 인덱스이므로 0부터 조회해야
-    #     #모든 요소 포함 여부 확인 가능
-    #     for j in range(5):
-    #         if i & (1 << j):
-    #             #print(arr[j], end=' ')
-    #             sub_list.append(letter[i][j])
-    #     main_list.append(sub_list)
-    # #
-    # print(main_list)
-
-    # #길이 조건에 맞는 부분집합을 담은 함수 len_list
-    # len_list = []
-    # for i in main_list:
-    #     if len(i) == 5:
-    #         len_list.append(i)
-    #
-    # print(len_list)
-
-    # print(safe(i))
-# for i in range(len((len_list))):
-#     for j in range(i):
-
-    # if (len_list[i][0]) - (len_list[i][1] ** 2) + (len_list[i][2] ** 3) - (len_list[i][3] **4) + (len_list[i][4] ** 5) == num:
-    #     print(len_list)
