@@ -11,9 +11,7 @@ while 1:
             check = stack.pop()
             if check == "문제":
                 continue
-            # else:
-            #     stack.append('문제')
-            #     stack.append('문제')
+
         else:
             stack.append('문제')
             stack.append('문제')

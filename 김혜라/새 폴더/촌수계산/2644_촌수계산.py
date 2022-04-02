@@ -31,15 +31,15 @@ print(arr)
 
 
 
-bfs(a)
+# bfs(a)
 # print(visited)
-
-print(visited[b] - 1 if visited[b] >0 else -1)
+#
+# print(visited[b] - 1 if visited[b] >0 else -1)
 
 
 
 bfs(b)
-# print(visited)
-# print(visited[a] if visited[a] >0 else -1)
+print(visited)
+print(visited[a] if visited[a] >0 else -1)
 
 
