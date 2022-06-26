@@ -2,54 +2,57 @@
 # s_cnt : 선택된 것의 개수
 # s : 목표하는 원소의 합
 # n : 원소의 개수
-# def dfs(level, s_cnt, s_sum):
-#     # 가지치기
-#     if s_cnt > n or s_sum > s:
-#         return
-#
-#         # 종료조건
-#     if level == n:
-#         if s_sum == s:
-#             global sol
-#             # n개의 원소를 가지고 있고 원소 합이 k인 부분집합
-#             sol += 1
-#         return
-#
-#     dfs(level + 1, s_cnt + 1, s_sum + arr[level])
-#     dfs(level + 1, s_cnt, s_sum)
-#
-#
-# n, s = map(int, input().split())
-# arr = list(map(int, input().split()))
-# sol = 0
-# dfs(0, 0, 0)
-# print(sol - 1)
+def dfs(level, s_cnt, s_sum):
+    global sol
+    # 가지치기
+    # if s_cnt > n or s_sum > s:
+    #     return
 
-import sys
+        # 종료조건
+    if level == n:
+        if s_sum == s:
 
-input = sys.stdin.readline
-n, s = map(int, input().split())
-arr = list(map(int, input().split()))
-cnt = 0
-
-def dfs(idx, s_sum):
-    global cnt
-    #인덱스가 원소 수를 넘어간 경우
-    if idx >= n:
+            # n개의 원소를 가지고 있고 원소 합이 k인 부분집합
+            sol += 1
         return
 
-    # 이번 탐색의 원소를 합해줌
-    s_sum += arr[idx]
-    if s_sum == s:
-        cnt += 1
+    dfs(level + 1, s_cnt + 1, s_sum + arr[level])
+    dfs(level + 1, s_cnt, s_sum)
 
-    #이번 탐색값을 포함해 다음 dfs
-    dfs(idx + 1, s_sum)
-    #이번 탐색값 제외 다음 dfs
-    dfs(idx + 1, s_sum - arr[idx])
 
-dfs(0, 0)
-print(cnt)
+n, s = map(int, input().split())
+arr = list(map(int, input().split()))
+sol = 0
+dfs(0, 0, 0)
+
+if s == 0:
+    sol = sol - 1
+print(sol)
+
+# import sys
+# input = sys.stdin.readline
+# n, s = map(int, input().split())
+# arr = list(map(int, input().split()))
+# cnt = 0
+#
+# def dfs(idx, s_sum):
+#     global cnt
+#     #인덱스가 원소 수를 넘어간 경우
+#     if idx >= n:
+#         return
+#
+#     # 이번 탐색의 원소를 합해줌
+#     s_sum += arr[idx]
+#     if s_sum == s:
+#         cnt += 1
+#
+#     #이번 탐색값을 포함해 다음 dfs
+#     dfs(idx + 1, s_sum)
+#     #이번 탐색값 제외 다음 dfs
+#     dfs(idx + 1, s_sum - arr[idx])
+#
+# dfs(0, 0)
+# print(cnt)
 
 # import sys
 #
